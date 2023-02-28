@@ -1,32 +1,41 @@
 import { useState } from 'react';
 
+import { useEffect } from 'react';
+
+import { fetchAllContacts } from 'redux/contacts/contactsOperations';
+
 import { nanoid } from 'nanoid';
 
 import css from './Form.module.css';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { addContact } from 'redux/contacts/contactsSlice';
+
 import { getFilteredContacts } from 'redux/selectors';
 
 const Form = () => {
   const contacts = useSelector(getFilteredContacts);
   const dispatch = useDispatch();
-  const onAddContact = payload => {
-    const normalizedName = payload.name.toLowerCase();
+
+  useEffect(() => {
+    dispatch(fetchAllContacts());
+  }, [dispatch]);
+
+  const onAddContact = ({ name, number }) => {
+    const normalizedName = name.toLowerCase();
 
     contacts.find(
       contact =>
         contact.name.toLowerCase() === normalizedName ||
-        contact.number === payload.number
+        contact.number === number
     )
       ? alert(`This contact is already in your book.`)
-      : dispatch(addContact(payload)) && setState({ ...initialState });
+      : dispatch(fetchAllContacts({ name, number })) &&
+        setState({ ...initialState });
   };
 
   const initialState = {
     name: '',
     number: '',
-    // id: '',
   };
 
   const [state, setState] = useState({ ...initialState });
