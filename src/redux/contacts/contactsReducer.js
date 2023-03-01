@@ -53,9 +53,12 @@ const contactsReducer = createReducer(initialState, {
   },
 
   [fetchDeleteContactSuccess]: (store, { payload }) => {
+    // store.loading = false;
+    // const index = store.items.findIndex(item => item.id === payload);
+    // store.items.splice(index, 1);
+
     store.loading = false;
-    const index = store.items.findIndex(item => item.id === payload);
-    store.items.splice(index, 1);
+    store.items = store.items.filter(item => item.id !== payload);
   },
   [fetchDeleteContactError]: (store, { payload }) => {
     store.loading = false;

@@ -17,7 +17,6 @@ export const fetchAllContacts = () => {
     try {
       dispatch(fetchAllContactsLoading());
       const data = await api.getAllContacts();
-      console.log(data);
       dispatch(fetchAllContactsSuccess(data));
     } catch ({ response }) {
       dispatch(fetchAllContactsError(response.data.message));
@@ -48,7 +47,6 @@ export const fetchDeleteContact = id => {
     } catch (error) {
       dispatch(fetchDeleteContactError(error.message));
     }
-    console.log(id);
   };
   return func;
 };
