@@ -2,7 +2,10 @@ import { useState } from 'react';
 
 import { useEffect } from 'react';
 
-import { fetchAllContacts } from 'redux/contacts/contactsOperations';
+import {
+  fetchAllContacts,
+  fetchAddContact,
+} from 'redux/contacts/contactsOperations';
 
 import { nanoid } from 'nanoid';
 
@@ -20,17 +23,16 @@ const Form = () => {
     dispatch(fetchAllContacts());
   }, [dispatch]);
 
-  const onAddContact = ({ name, number }) => {
-    const normalizedName = name.toLowerCase();
+  const onAddContact = payload => {
+    const normalizedName = payload.name.toLowerCase();
 
     contacts.find(
       contact =>
         contact.name.toLowerCase() === normalizedName ||
-        contact.number === number
+        contact.number === payload.number
     )
       ? alert(`This contact is already in your book.`)
-      : dispatch(fetchAllContacts({ name, number })) &&
-        setState({ ...initialState });
+      : dispatch(fetchAddContact(payload)) && setState({ ...initialState });
   };
 
   const initialState = {

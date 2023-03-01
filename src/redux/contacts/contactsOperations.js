@@ -45,9 +45,10 @@ export const fetchDeleteContact = id => {
       dispatch(fetchDeleteContactLoading());
       await api.deleteContact(id);
       dispatch(fetchDeleteContactSuccess(id));
-    } catch ({ response }) {
-      dispatch(fetchDeleteContactError(response.data.message));
+    } catch (error) {
+      dispatch(fetchDeleteContactError(error.message));
     }
+    console.log(id);
   };
   return func;
 };

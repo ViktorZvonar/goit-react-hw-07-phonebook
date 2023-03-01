@@ -21,6 +21,7 @@ const initialState = {
 const contactsReducer = createReducer(initialState, {
   [fetchAllContactsLoading]: store => {
     store.loading = true;
+    store.error = null;
   },
 
   [fetchAllContactsSuccess]: (store, { payload }) => {
@@ -34,6 +35,7 @@ const contactsReducer = createReducer(initialState, {
 
   [fetchAddContactLoading]: store => {
     store.loading = true;
+    store.error = null;
   },
 
   [fetchAddContactSuccess]: (store, { payload }) => {
@@ -47,11 +49,12 @@ const contactsReducer = createReducer(initialState, {
 
   [fetchDeleteContactLoading]: store => {
     store.loading = true;
+    store.error = null;
   },
 
   [fetchDeleteContactSuccess]: (store, { payload }) => {
     store.loading = false;
-    const index = store.items.findIndex(item => item.id !== payload);
+    const index = store.items.findIndex(item => item.id === payload);
     store.items.splice(index, 1);
   },
   [fetchDeleteContactError]: (store, { payload }) => {

@@ -11,8 +11,8 @@ const ContactList = () => {
 
   const dispatch = useDispatch();
 
-  const onRemoveContact = id => {
-    dispatch(fetchDeleteContact(id));
+  const onRemoveContact = payload => {
+    dispatch(fetchDeleteContact(payload));
   };
 
   return (
