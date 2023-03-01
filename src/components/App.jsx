@@ -6,19 +6,23 @@ const App = () => {
   return (
     <div
       style={{
-        // display: 'flex',
-        // justifyContent: 'space-between',
-        height: '100vh',
+        display: 'flex',
+        justifyContent: 'space-evenly',
+
         marginLeft: 30,
         fontSize: 20,
         color: '#010101',
       }}
     >
-      <h1>Phonebook</h1>
-      <Form />
-      <h1>Contacts</h1>
-      <Filter />
-      <ContactList />
+      <div>
+        <h1>Phonebook</h1>
+        <Form />
+      </div>
+      <div>
+        <h1>Contacts</h1>
+        <Filter />
+        <ContactList />
+      </div>
     </div>
   );
 };
