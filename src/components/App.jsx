@@ -6,6 +6,8 @@ const App = () => {
   return (
     <div
       style={{
+        // display: 'flex',
+        // justifyContent: 'space-between',
         height: '100vh',
         marginLeft: 30,
         fontSize: 20,
